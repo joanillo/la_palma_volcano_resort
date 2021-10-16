@@ -118,7 +118,7 @@ V8
 -VIDEO
 -REGLA1: màxim de 5 parcel·les per persona (que no sigui el admin)
 -REGLA2: una persona no pot recomprar una parcel·la que ja és seva
--TODO: github (no incloure dist/ ni node_modules/, ni php/.pwd ni nodejs/.pwd). .gitignore and add these lines: node_modules, .pwd 
+-github: https://github.com/joanillo/la_palma_volcano_resort
 
 V9 (TODO)
 =================

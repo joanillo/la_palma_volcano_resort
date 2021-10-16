@@ -1,13 +1,15 @@
 propietat_guanyat_al_mar_legal.txt
 FAQS.txt
 llegir.txt
+llegir_github.txt
 
 # passwords
 html/php/.pwd
 nodejs/.pwd
 
-# node modules
+# node modules i dist
 html/node_modules
+html/dist
 
 # Temporary files
 *~

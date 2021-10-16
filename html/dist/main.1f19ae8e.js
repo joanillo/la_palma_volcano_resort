@@ -58782,8 +58782,8 @@ function INFO() {
   cad += "<h3>El projecte</h3>";
   cad += "<ul>";
   cad += "<li>wiki: <a href='http://wiki.joanillo.org/index.php/La_Palma_Volcano_Resort' target='_blank'>http://wiki.joanillo.org/index.php/La_Palma_Volcano_Resort</a></li>";
-  cad += "<li>bloc: TBD</li>";
-  cad += "<li>github: TBD</li>";
+  cad += "<li>bloc: <a href='http://www.joanillo.org/?cat=514' target='_blank'>http://www.joanillo.org/?cat=514</a></li>";
+  cad += "<li>github: <a href='https://github.com/joanillo/la_palma_volcano_resort' target='_blank'>https://github.com/joanillo/la_palma_volcano_resort</a></li>";
   cad += "</ul>";
   return cad;
 }
@@ -59499,7 +59499,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33851" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43463" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
