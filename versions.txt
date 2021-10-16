@@ -1,0 +1,126 @@
+/home/joan/projectes/OSM/la_palma
+
+Per provar les diferents versions, n'hi ha prou a canviar en el fitxer package.json la referènciad de les versions. I
+
+$ npm start
+
+per desplegar:
+
+$ npm run build
+
+i en la carpeta dist/ està la versió destribuïble. Els fitxers json són a data/, i també s'hauran de copiar a la carpeta dist/data/
+
+Per cada versió fem una captura de pantalla, doncs entre versions els voluntaris de OSM poden haver canviat el contorn de la costa.
+
+v1
+===================
+-és només un primer exemple de com podem importar informació geojson a Openlayers
+-url: './data/countries.json',
+
+v2
+===================
+-./data/la_palma_newland.json
+-són 4 poligons geojson ubicats ja en la zona del delta que s'està formant a la costa de La Palma
+
+nodejs/parcellacio_v1.js
+------------------------
+-FASE 1: detectem els punts nord i surt de la costa on comença l'aflorament. Omplim un array de punts de la costa
+-FASE 2: ara que ja sabem quins són aquests punts i nodes, anem a eliminar de l'array de nodes els nodes que estan per dalt o per baix (en la via del coastline, els nodes estan ordenats. En canvi, la manera com surten els nodes objecte no tenen per què estar ordenats).
+-obtenim arr_coast_points_final: ja tenim un array de coordenades ordenat, i que ressegueix tota la línia de la costa nova
+
+nodejs/parcellacio_v2.js
+------------------------
+-FASE 1
+-FASE 2
+-FASE 3: Decideixo un requadre general (i suficientment gros) que parcel·larem. Seré generós i inclouré zones de mar.
+-obtenim arr_tesselles, que és un array de multipolygons
+-FASE 4: generem el fitxer geojson (la_palma_newland_211005.json) (de moment totes les cel·les, encara no mirem la info geogràfica)
+-ja tinc les cel·les amb un ID (dues lletres: A-A, A-B,...)
+
+
+nodejs/parcellacio_v3.js
+------------------------
+-FASE 1
+-FASE 2
+-FASE 3
+-FASE 4
+-function inside(point, vs) per mirar si un punt està dins del poligon. Així, donada una parcel·la, puc mirar si els 4 punts estan dins del poligon del delta volcànic.
+-poso un if per tal de què el fitxer JSON només inclogui els poligons que estan exclusivament dins del delta
+
+
+v2b
+===================
+-he estat treballant amb el script nodejs/parcellacio_vx.js, i ja puc parcel·lar la nova zona.
+-./data/la_palma_newland_211005.json
+
+
+v3
+==================
+-./data/la_palma_newland_211005.json
+-estic treballant l'event pointermove per ressaltar les cel·les
+
+v4
+==================
+-./data/la_palma_newland_211005b.json
+-posem etiquetes a les parcel·les
+-he modificat manualment el fitxer la_palma_newland_211005.json introduint
+"properties":{"name":"F-O", "has_owner":true},
+"properties":{"name":"F-P", "has_owner":false},
+l'objectiu és marcar de forma persistent les parcel·les lliures i les que tenen propietari.
+-a part de l'event pointermove, també hem programat l'event click
+
+nodejs/parcellacio_v4.js
+------------------------
+-No hi ha cap modificació del codi. La única cosa que els fitxers estan actualitzats amb els nous valors.
+-FASE1: de Overpass Turbo obtinc overpass_211009.json
+-FASE4: la_palma_newland_211009.json
+
+nodejs/parcellacio_v5.js
+------------------------
+-connexió amb la bd ($ npm install mysql2). Es necessita la versió 2. var mysql = require('mysql2');
+-en comptes d'escriure al fitxer la_palma_newland_211011.json, el que fem és omplir la bd, ...
+-...i a partir de la consulta a la bd generarem el fitxer la_palma_newland_211010.json (que incorporarà la informació del id_owner)
+-utilitzem Promises per fer les operacions amb la base de dades.
+-FASE 4: és la gravació a la bd de les noves parcel·les
+-FASE 5: generació del fitxer geojson.
+
+v5
+=================
+-SQL: SQL/la_palma_v5.sql. Creació de les 3 taules. Dades de prova. Consultes de demostració de la integritat de la informació.
+-el delta ha crescut (09/10/2021), posar noves parcel·les
+-posem títol (https://fonts.google.com/specimen/Ranchers)
+-icona aplicació
+-tooltip per mostrar informació de les parcel·les, popup per mostrar el formulari
+-Tenim la informació provinent de la_palma_newland_211011.json (que venia de la base de dades). Però de moment encara no ens connectem a la base de dades
+
+v6
+=================
+-Necessito PHP per connectar-me a la bd. Configuro el site d'Apache http://localhost/LPVR, des d'on em podré connectar a PHP).
+-Quan clico sobre una casella, m'apareix el pop-up del formulari de compra (afegir nou usuari si és el cas i fer la transacció)
+-Però compte! les dades que es carreguen encara vénen de './data/la_palma_newland_211011.json'.
+
+v7
+=================
+-Les dades es carreguen ja de la base de dades, i per això les caselles que el owner != 'admin' ja surten d'un altre color.
+-Quan faig una transacció (que ja havia fet a v6), tornem a renderitzar el mapa per tal de què la casella que hem tocat surti amb el color correcte.
+-El script nodejs/parcellacio_v5.js només serveix ara per incorporar noves caselles degut a l'activitat del volcà.
+-Regles de validació del formulari (nom i cognoms no poden ser buits (a no ser que el cognom sigui 'admin'), preu només es pot incrementar entre 1000 i 9000)
+-Títols de propietat (fpdf)
+-Gestió dels números en format local. punt pels milers i coma pels decimals per al front-end (però no internament). Funcions convertir_num_a_locale(num) i convertir_locale_a_num(strnum).
+-Passem tot el projecte a la carpeta  a html/
+
+V8
+=================
+-Routes (ho volia fer amb vanilla-router, però al final un router molt bàsic que funciona)
+-INFO
+-FAQ
+-Consultes SQL
+-VIDEO
+-REGLA1: màxim de 5 parcel·les per persona (que no sigui el admin)
+-REGLA2: una persona no pot recomprar una parcel·la que ja és seva
+-TODO: github (no incloure dist/ ni node_modules/, ni php/.pwd ni nodejs/.pwd). .gitignore and add these lines: node_modules, .pwd 
+
+V9 (TODO)
+=================
+-TODO App multiidioma (ca, es, en)
+

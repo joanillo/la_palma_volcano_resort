@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>La Palma Volcano Resort</title>
+    <style>
+      @import "node_modules/ol/ol.css";
+    </style>
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <div id="map">
+      <div class="ol-titol"><img src="./img/logo_v4.png" height=100px>&nbsp;La Palma Volcano Resort</div>
+      <p class="enllacos"><a href="./"></a> &nbsp; <a href="#" id="HOME">HOME</a> &nbsp; <a href="#" id="INFO">INFO</a>  &nbsp; <a href="#" id="FAQ">FAQ</a> &nbsp; <a href="#" id="SQL">SQL</a> &nbsp; <a href="#" id="VIDEO">VIDEO</a></p>
+      <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+      </div>
+      <div id="tooltip" class="ol-tooltip">
+        <div id="tooltip-content"></div>
+      </div>
+      <div id="info" class="ol-info">
+        <div id="info-content"></div>
+      </div>
+    </div>
+    <script src="./main_v8.js" type="module"></script>
+  </body>
+</html>

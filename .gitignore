@@ -1,0 +1,13 @@
+propietat_guanyat_al_mar_legal.txt
+FAQS.txt
+llegir.txt
+
+# passwords
+html/php/.pwd
+nodejs/.pwd
+
+# node modules
+html/node_modules
+
+# Temporary files
+*~

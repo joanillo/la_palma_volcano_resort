@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=Bangers);
+
+html, body {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Bangers',sans-serif;
+}
+
+#map {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Bangers',sans-serif;
+}
+
+.ol-titol {
+  position: fixed;
+  padding: 15px;
+  top: 10px;
+  left: 50px;
+  min-width: 240px;
+  z-index: 10;
+  font-size: 48px;
+  font-weight: bold; 
+}
+.ol-popup {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  bottom: 12px;
+  left: -50px;
+  min-width: 280px;
+  z-index:11;
+}
+.ol-popup:after, .ol-popup:before {
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.ol-popup:after {
+  border-top-color: white;
+  border-width: 10px;
+  left: 48px;
+  margin-left: -10px;
+}
+.ol-popup:before {
+  border-top-color: #cccccc;
+  border-width: 11px;
+  left: 48px;
+  margin-left: -11px;
+}
+.ol-popup-closer {
+  text-decoration: none;
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+.ol-popup-closer:after {
+  content: "✖";
+}
+.ol-tooltip {
+  visibility: hidden;
+  position: absolute;
+  background-color: white;
+  -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  top: 180px;
+  left: 50px;
+  min-width: 100px;
+  z-index: 10;
+}
+
+.enllacos {
+  position: fixed;
+  padding: 15px;
+  top: 100px;
+  left: 50px;
+  min-width: 240px;
+  z-index: 10;
+  font-size: 22px;
+}
+
+.enllacos a {
+  text-decoration: none;
+  color:black;
+}
+
+label {
+  display:inline-block;
+  width: 80px;
+}
+
+.ol-info {
+  visibility: hidden;
+  position: absolute;
+  background-color: white;
+  -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  top: 180px;
+  left: 50px;
+  min-width: 400px;
+  max-width: 800px;
+  z-index: 10;
+  font-family: sans-serif;
+}
+
+
+/*# sourceMappingURL=/style.78032849.css.map */
