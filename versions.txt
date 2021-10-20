@@ -111,7 +111,7 @@ v7
 
 V8
 =================
--Routes (ho volia fer amb vanilla-router, però al final un router molt bàsic que funciona)
+-Routes (ho volia fer amb vanilla-router, però al final un router molt bàsic que funciona). Ara bé: no és un router
 -INFO
 -FAQ
 -Consultes SQL
@@ -130,4 +130,5 @@ V9 (TODO)
 =================
 -TODO App multiidioma (ca, es, en)
 -TODO. Tests unitaris
+-TODO. Router
 
