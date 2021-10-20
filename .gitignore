@@ -10,7 +10,7 @@ nodejs/.pwd
 # node modules i dist
 html/node_modules
 html/dist
-html/php/pdf/*
+html/php/pdf/*.pdf
 
 # Temporary files
 *~
