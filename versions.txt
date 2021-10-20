@@ -123,7 +123,7 @@ V8
 	-l'aplicació funciona tant en local (http://localhost:1234) com en remot (http://projects.joanillo.org/la_palma). Per fer-ho, hem hagut de mirar el referer, tant en javascript (document.referrer) com en PHP ($_SERVER["HTTP_REFERER"]). 
 	-Ja funciona el pdf en remot.
 -github: https://github.com/joanillo/la_palma_volcano_resort
-	-en el .gitignore no he de copiar els pdf
+	-en el .gitignore no he de copiar els pdf, però sí la carpeta pdf/ (posarem: html/php/pdf/*)
 	-en el .gitignore no incloc tota la part de dist/ ni node_modules/. Només hi ha el codi. Si algú vol provar el codi ja es farà les dependències i el build.
 
 V9 (TODO)
