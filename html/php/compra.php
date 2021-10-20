@@ -71,9 +71,9 @@ $row = mysqli_fetch_assoc($res);
 $old_id_owner = $row['old_id_owner'];
 
 
-if ($num_parcelles >= 5 ) { //REGLA 2
+if ($num_parcelles >= 5 && $id_owner != 1) { //REGLA 1
 	$cad.="<br />Transacció <b>NO</b> realitzada.<br />Actualment tens $num_parcelles parcel·les. No es pot ser propietari de més de 5 parcel·les";
-} else if ($id_owner == $old_id_owner ) { //REGLA 2
+} else if ($id_owner == $old_id_owner  && $id_owner != 1) { //REGLA 2
 	$cad.="<br />Transacció <b>NO</b> realitzada.<br />No es pot recomprar una parcel·la.";
 } else {
 	//anem a realitzar una compra
@@ -84,7 +84,11 @@ if ($num_parcelles >= 5 ) { //REGLA 2
 
 	//echo "<br />Transacció realitzada";
 	$cad.="<br />Transacció realitzada";
-	$cad.="<br />Descarrega el <a href='http://localhost/LPVR/php/pdf/LPVR_".$id_transaction.".pdf' target='_blank'>títol de propietat</a>";
+	if (strpos($_SERVER["HTTP_REFERER"], "localhost") === false) {
+		$cad.="<br />Descarrega el <a href='./php/pdf/LPVR_".$id_transaction.".pdf' target='_blank'>títol de propietat</a>";
+	} else {
+		$cad.="<br />Descarrega el <a href='http://localhost/LPVR/php/pdf/LPVR_".$id_transaction.".pdf' target='_blank'>títol de propietat</a>";
+	}
 }
 //echo $cad;
 mysqli_close($conn);
@@ -134,8 +138,6 @@ $mesos = array("gener","febrer","març","abril","maig","juny","juliol","agost","
 $dia = "Barcelona, ".$diesSetmana[date('w')]." ".date('d')." de ".$mesos[date('n')-1]. " del ".date('Y') ;
 $pdf->Write(5,"$dia\n\n");
 
-//$pdf->Output();
-//$pdf->Output('I','LPVR_'.$id_parcel.'.pdf');
 $pdf->Output('./pdf/LPVR_'.$id_transaction.'.pdf','F');
 
 echo $cad;

@@ -6,12 +6,12 @@ function INFO() {
 	cad += "<p><b>14 octubre de 2021</b>. Continua fluïnt lava per les faldes del volcà, però ara estan alimentant altres llengües, i per ara aquest delta no es fa més gros.</p>";
 	cad += "<h3>Satèl·lit Sentinel-2</h3>";
 	//necessari fer la referència a les imatges així per tal de què funcioni en el servidor remot (desplegament públic)
-	cad += "<img src='http://localhost/LPVR/img/sentinel2.jpeg' width='800'><br />";
-	//cad += "<img src='./img/sentinel2.jpeg' width='800'><br />";
+	//cad += "<img src='http://localhost/LPVR/img/sentinel2.jpeg' width='800'><br />";
+	cad += "<img src='./img/sentinel2.jpeg' width='800'><br />";
 	cad += "<p>La missió <b>Copernicus Sentinel-2</b> de l'ESA (Agència Espacial Europea) consisteix en dos satèl·lits artificials desfasats 180º en la mateixa òrbita. La seva missió és monitoritzar la superfície terrestre. Orbiten a 290Km d'altitud, i revisiten els punts cada 10 dies (5 dies perquè són dos satèl·lits) Més informació: <a href='https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2' target='_blank'>https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2</a></p>";
 	cad += "<h3>OpenStreetMap</h3>";
-	cad += "<img src='http://localhost/LPVR/img/feina_voluntaris_OSM.png' width='800'><br />";
-	//cad += "<img src='./img/feina_voluntaris_OSM.png' width='800'><br />";
+	//cad += "<img src='http://localhost/LPVR/img/feina_voluntaris_OSM.png' width='800'><br />";
+	cad += "<img src='./img/feina_voluntaris_OSM.png' width='800'><br />";
 	cad += "<p>Els voluntaris d'OpenStreetMaps han estat actualitzant la línia de costa a mida de què es disposava de fotogràfies aèries. Cada cop que s'actualitzava el mapa, LPVR SLU ha creat noves parcel·les de terreny de forma dinàmica. La superfície creix, el número de parcel·les augmenta.</p>";	
 	cad += "<h3>El projecte</h3>";
 	cad += "<ul>";

@@ -58771,13 +58771,13 @@ function INFO() {
   cad += "<p>Principis d'<b>octubre de 2021</b>. Una llengua de lava va discórrer per la vall de Todoque, va arribar al mar, i va formar un delta de lava. L'hem anomenat Nous Territoris (sector I).</p>";
   cad += "<p><b>14 octubre de 2021</b>. Continua fluïnt lava per les faldes del volcà, però ara estan alimentant altres llengües, i per ara aquest delta no es fa més gros.</p>";
   cad += "<h3>Satèl·lit Sentinel-2</h3>"; //necessari fer la referència a les imatges així per tal de què funcioni en el servidor remot (desplegament públic)
+  //cad += "<img src='http://localhost/LPVR/img/sentinel2.jpeg' width='800'><br />";
 
-  cad += "<img src='http://localhost/LPVR/img/sentinel2.jpeg' width='800'><br />"; //cad += "<img src='./img/sentinel2.jpeg' width='800'><br />";
-
+  cad += "<img src='./img/sentinel2.jpeg' width='800'><br />";
   cad += "<p>La missió <b>Copernicus Sentinel-2</b> de l'ESA (Agència Espacial Europea) consisteix en dos satèl·lits artificials desfasats 180º en la mateixa òrbita. La seva missió és monitoritzar la superfície terrestre. Orbiten a 290Km d'altitud, i revisiten els punts cada 10 dies (5 dies perquè són dos satèl·lits) Més informació: <a href='https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2' target='_blank'>https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2</a></p>";
-  cad += "<h3>OpenStreetMap</h3>";
-  cad += "<img src='http://localhost/LPVR/img/feina_voluntaris_OSM.png' width='800'><br />"; //cad += "<img src='./img/feina_voluntaris_OSM.png' width='800'><br />";
+  cad += "<h3>OpenStreetMap</h3>"; //cad += "<img src='http://localhost/LPVR/img/feina_voluntaris_OSM.png' width='800'><br />";
 
+  cad += "<img src='./img/feina_voluntaris_OSM.png' width='800'><br />";
   cad += "<p>Els voluntaris d'OpenStreetMaps han estat actualitzant la línia de costa a mida de què es disposava de fotogràfies aèries. Cada cop que s'actualitzava el mapa, LPVR SLU ha creat noves parcel·les de terreny de forma dinàmica. La superfície creix, el número de parcel·les augmenta.</p>";
   cad += "<h3>El projecte</h3>";
   cad += "<ul>";
@@ -58926,22 +58926,19 @@ var _VIDEO = _interopRequireDefault(require("./VIDEO.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// === ROUTER BÀSIC ====================
+// === ROUTER BÀSIC (compte! això no és un router) ====================
 //https://jstutorial.medium.com/making-your-own-vanilla-js-router-2e621ffdee88
 function load_content(id) {
   //console.log('Content loading for /' + id + '...');
   document.title = id + ' - La Palma Volcano Resort';
-
-  if (id == 'HOME') {
-    window.history.pushState({
-      id: id
-    }, "".concat(id), "/");
+  /*
+  if (id=='HOME') {
+    window.history.pushState({id}, `${id}`, `/`);
   } else {
-    window.history.pushState({
-      id: id
-    }, "".concat(id), "/".concat(id));
-  } //falta: how to remove hash from url
-
+    window.history.pushState({id}, `${id}`, `/${id}`);
+  }
+  //falta: how to remove hash from url
+  */
 
   var info = document.getElementById('info');
   var txt = "";
@@ -59392,7 +59389,8 @@ function create_layers_from_db() {
     }
   };
 
-  xmlhttp.open("GET", "http://localhost/LPVR/php/fill_json_from_db.php", true);
+  var url = document.referrer.indexOf('localhost') >= 0 ? "http://localhost/LPVR/php/fill_json_from_db.php" : "./php/fill_json_from_db.php";
+  xmlhttp.open("GET", url, true);
   xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xmlhttp.send();
 }
@@ -59415,11 +59413,12 @@ function comprar(id_parcel, nom, cognoms, preu) {
       layers.pop();
       create_layers_from_db(); //afegim els dos layers i les dues capes del mapa, amb la informació renovada
     } else {
-      resultat_compra.innerHTML = "<img src=\"img/ajax_wait.gif\" />";
+      resultat_compra.innerHTML = "<img src=\"./img/ajax_wait.gif\" />";
     }
   };
 
-  xmlhttp.open("POST", "http://localhost/LPVR/php/compra.php", true);
+  var url = document.referrer.indexOf('localhost') >= 0 ? "http://localhost/LPVR/php/compra.php" : "./php/compra.php";
+  xmlhttp.open("POST", url, true);
   xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xmlhttp.send("id_parcel=" + id_parcel + "&nom=" + nom + "&cognoms=" + cognoms + "&preu=" + preu);
 }
@@ -59499,7 +59498,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43463" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37373" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

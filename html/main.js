@@ -17,18 +17,19 @@ import FAQ from './FAQ.js';
 import SQL from './SQL.js';
 import VIDEO from './VIDEO.js';
 
-// === ROUTER BÀSIC ====================
+// === ROUTER BÀSIC (compte! això no és un router) ====================
 //https://jstutorial.medium.com/making-your-own-vanilla-js-router-2e621ffdee88
 function load_content(id) {
   //console.log('Content loading for /' + id + '...');
   document.title = id + ' - La Palma Volcano Resort';
+  /*
   if (id=='HOME') {
     window.history.pushState({id}, `${id}`, `/`);
   } else {
     window.history.pushState({id}, `${id}`, `/${id}`);
   }
   //falta: how to remove hash from url
-
+  */
   var info = document.getElementById('info');
   var txt = "";
 
@@ -498,7 +499,8 @@ function create_layers_from_db() {
     }
   }
 
-  xmlhttp.open("GET","http://localhost/LPVR/php/fill_json_from_db.php", true)
+  let url = (document.referrer.indexOf('localhost')>=0) ? "http://localhost/LPVR/php/fill_json_from_db.php" : "./php/fill_json_from_db.php"; 
+  xmlhttp.open("GET",url, true);
   xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xmlhttp.send();
 }
@@ -520,11 +522,12 @@ function comprar(id_parcel, nom, cognoms, preu) {
       layers.pop();
       create_layers_from_db(); //afegim els dos layers i les dues capes del mapa, amb la informació renovada
     } else {
-      resultat_compra.innerHTML = "<img src=\"img/ajax_wait.gif\" />";
+      resultat_compra.innerHTML = "<img src=\"./img/ajax_wait.gif\" />";
     }
   }
 
-  xmlhttp.open("POST","http://localhost/LPVR/php/compra.php", true)
+  let url = (document.referrer.indexOf('localhost')>=0) ? "http://localhost/LPVR/php/compra.php" : "./php/compra.php"; 
+  xmlhttp.open("POST",url, true);
   xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xmlhttp.send("id_parcel=" + id_parcel + "&nom=" + nom + "&cognoms=" + cognoms + "&preu=" + preu);
 }
